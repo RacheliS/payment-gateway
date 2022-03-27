@@ -1,6 +1,6 @@
 package com.finaro.paymentGateway.services;
 
-import com.finaro.paymentGateway.models.PaymentDao;
+import com.finaro.paymentGateway.models.Dao.PaymentDao;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;

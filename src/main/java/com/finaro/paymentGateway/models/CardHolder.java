@@ -8,6 +8,7 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
+@Builder
 public class CardHolder implements Serializable {
 
     private String name;

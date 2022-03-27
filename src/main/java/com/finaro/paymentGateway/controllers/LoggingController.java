@@ -11,4 +11,8 @@ public class LoggingController {
     public void info(String info) {
         logger.info(info);
     }
+
+    public void error(String error) {
+        logger.error(error);
+    }
 }

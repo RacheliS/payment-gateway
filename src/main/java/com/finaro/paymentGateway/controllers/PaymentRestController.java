@@ -1,7 +1,6 @@
 package com.finaro.paymentGateway.controllers;
 
 
-import com.finaro.paymentGateway.models.PaymentDao;
 import com.finaro.paymentGateway.models.PaymentRequest;
 import com.finaro.paymentGateway.models.PaymentResponse;
 import org.springframework.beans.factory.annotation.Autowired;

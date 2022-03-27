@@ -6,12 +6,13 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
+@Builder
 public class PaymentRequest {
 
     private Long invoice;
-    private Float amount;
+    private Double amount;
     private String currency;
     private CardHolder cardHolder;
-    private Card card ;
+    private Card card;
 
 }

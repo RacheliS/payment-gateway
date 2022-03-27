@@ -2,7 +2,7 @@ package com.finaro.paymentGateway.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.finaro.paymentGateway.models.PaymentDao;
+import com.finaro.paymentGateway.models.Dao.PaymentDao;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class AuditService {
 
     public ResponseEntity<String> exportPayments(List<PaymentDao> paymentDaoList) {
         if (paymentDaoList.isEmpty())
-            return new ResponseEntity<>("NotFound enteties  " + fileName, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Not Found entities  " + fileName, HttpStatus.NOT_FOUND);
         try {
             for (PaymentDao paymentDao : paymentDaoList) {
                 exportPayments(maskService.maskData(base64EncoderService.decrypt(paymentDao)));

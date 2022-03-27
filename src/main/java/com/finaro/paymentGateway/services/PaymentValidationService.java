@@ -3,6 +3,10 @@ package com.finaro.paymentGateway.services;
 import com.finaro.paymentGateway.models.Card;
 import com.finaro.paymentGateway.models.CardHolder;
 import com.finaro.paymentGateway.models.PaymentRequest;
+import com.finaro.paymentGateway.repositories.PaymentDaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import com.finaro.paymentGateway.utils.ValidationUtils;
@@ -13,6 +17,9 @@ import java.util.Map;
 
 @Service
 public class PaymentValidationService {
+
+    @Autowired
+    PaymentDaoRepository paymentRepository;
 
     private final String REQUIRED_FILED = "Required filed is empty";
 
@@ -26,13 +33,16 @@ public class PaymentValidationService {
         return errors;
     }
 
-    public void checkValidInvoice(long invoice, Map<String, String> errors) {
-        if (invoice == 0) {
+    public void checkValidInvoice(Long invoice, Map<String, String> errors) {
+        if (invoice == null) {
             errors.put("Invoice", REQUIRED_FILED);
+        }
+        if (paymentRepository.existsById(invoice)) {
+            errors.put("Invoice", "Payment already existing, invoice is unique filed");
         }
     }
 
-    public void checkValidAmount(Float amount, Map<String, String> errors) {
+    public void checkValidAmount(Double amount, Map<String, String> errors) {
         if (amount == null || amount == 0) {
             errors.put("Amount", REQUIRED_FILED);
         }

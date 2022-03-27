@@ -1,6 +1,6 @@
-package com.finaro.paymentGateway.repostories;
+package com.finaro.paymentGateway.repositories;
 
-import com.finaro.paymentGateway.models.PaymentDao;
+import com.finaro.paymentGateway.models.Dao.PaymentDao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

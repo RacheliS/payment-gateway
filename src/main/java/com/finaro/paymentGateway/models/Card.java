@@ -8,6 +8,7 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
+@Builder
 public class Card implements Serializable {
 
     private String pan;

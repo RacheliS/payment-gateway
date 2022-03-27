@@ -1,5 +1,6 @@
 package com.finaro.paymentGateway;
 
+import com.finaro.paymentGateway.controllers.LoggingController;
 import com.finaro.paymentGateway.controllers.PaymentRestController;
 import com.finaro.paymentGateway.enums.Currency;
 import com.finaro.paymentGateway.models.Card;
@@ -7,14 +8,15 @@ import com.finaro.paymentGateway.models.CardHolder;
 import com.finaro.paymentGateway.models.PaymentRequest;
 import com.finaro.paymentGateway.models.PaymentResponse;
 import com.finaro.paymentGateway.repositories.PaymentDaoRepository;
+import com.finaro.paymentGateway.services.Base64EncoderService;
 import com.finaro.paymentGateway.services.PaymentService;
 import com.finaro.paymentGateway.services.PaymentValidationService;
-import org.assertj.core.util.Maps;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -26,14 +28,17 @@ import java.util.Map;
 import static org.mockito.ArgumentMatchers.any;
 
 
-public class PaymentControllerTest {
+@ExtendWith(MockitoExtension.class)
+public class PaymentServiceTest {
 
+    @InjectMocks
+    private PaymentService paymentService;
     @Mock
     private PaymentValidationService paymentValidationService;
     @Mock
-    private PaymentService paymentService;
-    @Mock
     private PaymentDaoRepository paymentRepository;
+    @Mock
+    private Base64EncoderService base64EncoderService;
 
     private PaymentRequest paymentRequest = PaymentRequest.builder().invoice(new Long(74455)).amount(32.5)
             .currency(Currency.EUR.toString())
@@ -45,10 +50,10 @@ public class PaymentControllerTest {
         Map<String, String> submitPayment = new HashMap<>();
         submitPayment.put("INVOICE", "REQUIRED");
         ResponseEntity<PaymentResponse> PAYMENT_RESPONSE_ERROR = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(PaymentResponse.builder().approved(false).errors(submitPayment).build());
-        Mockito.when(paymentRepository.save(any())).thenReturn(submitPayment);
+        Mockito.when(paymentValidationService.validRequest(any())).thenReturn(submitPayment);
         ResponseEntity<PaymentResponse> paymentResponseResponseEntity = paymentService.submitPayment(paymentRequest);
         assertEquals(PAYMENT_RESPONSE_ERROR, paymentResponseResponseEntity);
-        Mockito.verify(paymentRepository,Mockito.times(0));
+        Mockito.verify(paymentRepository, Mockito.times(0)).save(any());
     }
 
     @Test
@@ -59,7 +64,7 @@ public class PaymentControllerTest {
         Mockito.when(paymentRepository.save(any())).thenReturn(null);
         ResponseEntity<PaymentResponse> paymentResponseResponseEntity = paymentService.submitPayment(paymentRequest);
         assertEquals(PAYMENT_RESPONSE_ERROR, paymentResponseResponseEntity);
-        Mockito.verify(paymentRepository,Mockito.times(1));
+        Mockito.verify(paymentRepository, Mockito.times(1)).save(any());
     }
 
 

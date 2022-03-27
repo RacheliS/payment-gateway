@@ -1,4 +1,4 @@
-package com.finaro.paymentGateway.models;
+package com.finaro.paymentGateway.models.Dao;
 
 import lombok.*;
 
@@ -16,7 +16,7 @@ public class PaymentDao {
 
     @Id
     private Long invoice;
-    private Float amount;
+    private Double amount;
     private String currency;
     private String name;
     private String email;
