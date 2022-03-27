@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "5e37a26c-c9f3-4fdf-80c9-bcd121c75944",
+		"name": "PaymantApiCollections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Submit Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"invoice\": 12354, \"amount\": 32423.5, \"currency\": \"EUR\",\r\n \"cardHolder\": { \"name\": \"Racheli Amrusi\", \"email\": \"s0548438280@gmail.com\" }, \r\n\"card\":{ \"pan\": \"5196081888500645\", \"expiry\": \"0127\", \"cvv\": \"789\" }}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/payments/services/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments",
+						"services",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Payment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/payments/services/getPayment/12354",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments",
+						"services",
+						"getPayment",
+						"12354"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Print payments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/payments/services/getAllPayments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments",
+						"services",
+						"getAllPayments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
