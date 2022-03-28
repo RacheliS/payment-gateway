@@ -1,4 +1,4 @@
-# Payment-Gateway-Assignmen
+# Payment-Gateway-Assignment
 
 
 <b>Introduction:</b><br/>
