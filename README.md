@@ -27,28 +27,30 @@ Implement a payment gateway front end. This assignment highlights some of the ty
 	<br/><b> Body:</b> { "invoice": 12354, "amount": 32423.5, "currency": "EUR",
 	 "cardHolder": { "name": "Racheli Amrusi", "email": "s0548438280@gmail.com" }, 
    "card":{ "pan": "5196081888500645", "expiry": "0127", "cvv": "789" }}
-<br/><b>  Response :</b>	{  "approved": false,
+<br/><b>  Response :</b>	
+ ```{  "approved": false,
                          "errors": {
-                         "CardHolder.email": "Email should be a valid Email ddress",
+                         "CardHolder.email": "Email should be a valid Email address",
                          "Invoice": "Payment already existing, invoice is unique filed",
                          "Card.expiry": "Card expiration date has passed",
                           "Currency": " Currency is not supported value",
                           "card.expiry": "Expiry date should be provide with 4 digits value ( ex : 01/22" }}
+``````
 
 2.	GetPayment 
 	<br/> <b> Get:</b> http://localhost:8080/payments/services/getPayment/12354
-  <br/> <b> Response: (masked data) </b>{
-    "paymentDao": {
+ <br/><b> Response: (using masked data service) </b>
+  ```
+    { "paymentDao": {
         "invoice": 12354,
         "amount": 32423.5,
         "currency": "EUR",
         "name": "**************",
         "email": "s0548438280@gmail.com",
         "pan": "************0645",
-        "expiry": "****"
-    }
-}
-3.	GetAllPayments </br>
+        "expiry": "****" }}
+```
+3.GetAllPayments </br>
   <b> Get:</b> http://localhost:8080/payments/services/getAllPayments <br/>
   Stream the transaction to an external source for audit.<br/>
 	you can configurable file loaction in application.properties file <br/>
