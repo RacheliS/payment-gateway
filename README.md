@@ -5,7 +5,7 @@
 Implement a payment gateway front end. This assignment highlights some of the typical everyday challenges in the card processing industry.
 
 <br/>
- <b>Project using technology:<br/></b>
+ <b>Project's technologies:<br/></b>
 •	Java 11 <br/>
 •	Maven 3.6.0 <br/>
 •	Spring Boot, Spring web, Spring Data Jpa <br/>
