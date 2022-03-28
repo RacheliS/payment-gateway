@@ -9,11 +9,11 @@ Implement a payment gateway front end. This assignment highlights some of the ty
 •	Java 11 <br/>
 •	Maven 3.6.0 <br/>
 •	Spring Boot, Spring web, Spring Data Jpa <br/>
-•	H2database.<br/>
+•	Maven<br/>
 •	Lombok.<br/>
 •	Mockito<br/>
 •	Junit <br/>
-•	Maven<br/>
+•	H2database<br/>
 
 <br/>
 <b>To run the application: :</b><br/>
