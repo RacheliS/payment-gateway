@@ -29,12 +29,12 @@ Implement a payment gateway front end. This assignment highlights some of the ty
    "card":{ "pan": "5196081888500645", "expiry": "0127", "cvv": "789" }}
 <br/><b>  Response :</b>	
  ```{  "approved": false,
-                         "errors": {
-                         "CardHolder.email": "Email should be a valid Email address",
-                         "Invoice": "Payment already existing, invoice is unique filed",
-                         "Card.expiry": "Card expiration date has passed",
-                          "Currency": " Currency is not supported value",
-                          "card.expiry": "Expiry date should be provide with 4 digits value ( ex : 01/22" }}
+       "errors": {
+       "cardHolder.email": "Email should be a valid Email address",
+       "Invoice": "Payment already existing, invoice is unique filed",
+       "card.expiry": "Card expiration date has passed",
+       "currency": " Currency is not supported value",
+       "card.expiry": "Expiry date should be provide with 4 digits value ( ex : 01/22" }}
 ``````
 
 2.	GetPayment 
