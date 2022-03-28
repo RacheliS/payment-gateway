@@ -23,8 +23,8 @@ Implement a payment gateway front end. This assignment highlights some of the ty
 <b>Payment rest controller implements api :</b>
 
 1.	SubmitPayment 
-	<br/><b> Post :</b> http://localhost:8080/payments/services/submit
-	<br/><b> Body :</b> { "invoice": 12354, "amount": 32423.5, "currency": "EUR",
+	<br/><b> Post:</b> http://localhost:8080/payments/services/submit
+	<br/><b> Body:</b> { "invoice": 12354, "amount": 32423.5, "currency": "EUR",
 	 "cardHolder": { "name": "Racheli Amrusi", "email": "s0548438280@gmail.com" }, 
    "card":{ "pan": "5196081888500645", "expiry": "0127", "cvv": "789" }}
 <br/><b>  Response :</b>	{  "approved": false,
