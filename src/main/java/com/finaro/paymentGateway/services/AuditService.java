@@ -28,7 +28,7 @@ public class AuditService {
     @Autowired
     MaskService maskService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuditService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AuditService.class);
 
     @Value("${audit.file.location}")
     private String fileName;
@@ -43,23 +43,23 @@ public class AuditService {
             file.createNewFile();
             fileOutputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
-            LOGGER.error("File not found or cannot be created", e);
+            LOG.error("File not found or cannot be created", e);
         } catch (IOException e) {
-            LOGGER.error("File not found or cannot be created", e);
+            LOG.error("File not found or cannot be created", e);
         }
     }
 
     public ResponseEntity<String> exportPayments(List<PaymentDao> paymentDaoList) {
         if (paymentDaoList.isEmpty())
-            return new ResponseEntity<>("Not Found entities  " + fileName, HttpStatus.NOT_FOUND);
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found entities to print" + fileName);   
         try {
             for (PaymentDao paymentDao : paymentDaoList) {
                 exportPayments(maskService.maskData(base64EncoderService.decrypt(paymentDao)));
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("Fail writing to file", HttpStatus.EXPECTATION_FAILED);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Fail writing to file");     
         }
-        return new ResponseEntity<>("Success writing to file on path " + fileName, HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Success writing to file on path" + fileName);   
     }
 
     public void exportPayments(PaymentDao paymentDao) throws Exception {
@@ -69,7 +69,7 @@ public class AuditService {
             fileOutputStream.write((gson.toJson(paymentDao) + "," + "\n").getBytes());
             fileOutputStream.flush();
         } catch (IOException e) {
-            LOGGER.error("Payment not write to file", e);
+            LOG.error("Payment not write to file", e);
             throw new Exception("Payment not write to file");
         }
     }
