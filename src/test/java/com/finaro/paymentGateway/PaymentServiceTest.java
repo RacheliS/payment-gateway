@@ -40,6 +40,7 @@ public class PaymentServiceTest {
     @Mock
     private Base64EncoderService base64EncoderService;
 
+    
     private PaymentRequest paymentRequest = PaymentRequest.builder().invoice(new Long(74455)).amount(32.5)
             .currency(Currency.EUR.toString())
             .cardHolder(CardHolder.builder().name("Racheli").email("s05484388280@gmail.com").build())
